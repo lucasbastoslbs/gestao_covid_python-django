@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     
+    'consulta',
     'usuario',
     'unidade',
     'triagem',
-    'medicamento'
+    'medicamento',
 ]
 
 MIDDLEWARE = [
