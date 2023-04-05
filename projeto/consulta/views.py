@@ -11,43 +11,39 @@ from django.urls import reverse
 
 from utils.decorators import LoginRequiredMixin,  StaffRequiredMixin
 
-from .models import Triagem
+from .models import Consulta
 
 
-class TriagemListView(LoginRequiredMixin,  ListView):
-    model = Triagem
+class ConsultaListView(LoginRequiredMixin,  ListView):
+    model = Consulta
     
-class TriagemMinhasUnidadesListView(LoginRequiredMixin,  ListView):
-    model = Triagem
-    template_name = 'triagem/unidades_list.html'
+class ConsultaListView(LoginRequiredMixin,  ListView):
+    model = Consulta
+    template_name = 'consulta_list.html'
 
-
-class TriagemCreateView(LoginRequiredMixin, CreateView):
-    model = Triagem
-    fields = ['responsavel', 'unidade', 'paciente', 'data_nascimento', 'altura', 'peso',
-              'tem_febre', 'tem_dor_cabeca', 'tem_secrecao_espirros', 'tem_irritacao_garganta',
-              'tem_tosse', 'tem_dificuldade_respiratoria', 'tem_dores_corpo', 'tem_diarreia',
-              'viajou', 'contatou']
-    success_url = 'triagem_list'
+class ConsultaCreateView(LoginRequiredMixin, CreateView):
+    model = Consulta
+    fields = ['medico', 'data', 'hora', 'paciente', 'prescricao', 'medicamento']
+    success_url = 'consulta_list'
     
     def get_success_url(self):
-        messages.success(self.request, 'Triagem regustrada com sucesso na plataforma!')
+        messages.success(self.request, 'Consulta regustrada com sucesso na plataforma!')
         return reverse(self.success_url)
 
 
-class TriagemUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
-    model = Triagem
-    fields = ['responsavel', 'unidade', 'data_nascimento', 'altura', 'peso']
-    success_url = 'triagem_list'
+class ConsultaUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+    model = Consulta
+    fields = ['medico', 'data', 'hora', 'paciente', 'prescricao', 'medicamento']
+    success_url = 'consulta_list'
     
     def get_success_url(self):
-        messages.success(self.request, 'Dados da triagem atualizados com sucesso na plataforma!')
+        messages.success(self.request, 'Dados da consulta atualizados com sucesso na plataforma!')
         return reverse(self.success_url)
 
 
-class TriagemDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
-    model = Triagem
-    success_url = 'triagem_list'
+class ConsultaDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+    model = Consulta
+    success_url = 'consulta_list'
 
     def delete(self, request, *args, **kwargs):
         """
@@ -59,5 +55,5 @@ class TriagemDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
         try:
             self.object.delete()
         except Exception as e:
-            messages.error(request, 'Há dependências ligadas a essa triagem, permissão negada!')
+            messages.error(request, 'Há dependências ligadas a essa consulta, permissão negada!')
         return redirect(self.success_url)
