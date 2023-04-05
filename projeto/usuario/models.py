@@ -25,6 +25,10 @@ class TecnicoAtivoManager(UserManager):
     def get_queryset(self):
         return super().get_queryset().filter(tipo='TÉCNICO', is_active=True)
 
+class MedicoAtivoManager(UserManager):
+    def get_queryset(self):
+        return super().get_queryset().filter(tipo='MÉDICO', is_active=True)
+
 
 class Usuario(AbstractBaseUser):
     #1 campo da tupla fica no banco de dados
@@ -33,6 +37,7 @@ class Usuario(AbstractBaseUser):
         ('ADMINISTRADOR', 'Administrador'),
         ('ENFERMEIRO', 'Enfermeiro' ),
         ('TÉCNICO', 'Técnico' ),
+        ('MÉDICO','Médico'),
     )
 
     USERNAME_FIELD = 'email'
