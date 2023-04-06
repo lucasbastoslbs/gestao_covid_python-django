@@ -1,13 +1,11 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, UserManager
+from django.contrib.auth.models import AbstractBaseUser, UserManager
 from django.db import models
 from django.db.models import Q
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
-
-from datetime import timedelta, datetime
 
 from utils.gerador_hash import gerar_hash
 
@@ -53,6 +51,7 @@ class Usuario(AbstractBaseUser):
     administradores = AdministradorAtivoManager()
     enfermeiros = EnfermeiroAtivoManager()
     tecnicos = TecnicoAtivoManager()
+    medicos = MedicoAtivoManager()
 
     class Meta:
         ordering            =   ['nome']
