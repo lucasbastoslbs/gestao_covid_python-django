@@ -3,6 +3,6 @@ projeto para atividade da disciplica tópicos avançados em informática
 
 
 # Pendências
-    -gerar as tabelas
-    -subir pasta core
-    -testar o medicamentos (manytomany?)
+    
+# Melhorias
+    -colocar apenas medicos (ja implantado no app usuarios, falta apenas puxar a listagem no app consulta)
